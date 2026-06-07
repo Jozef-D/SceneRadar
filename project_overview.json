@@ -1,0 +1,16 @@
+{
+  "name": "SceneRadar full API",
+  "mode": "real-api-only",
+  "demo_data": false,
+  "required_keys": [
+    "TICKETMASTER_API_KEY",
+    "LASTFM_API_KEY"
+  ],
+  "recommended_env": [
+    "MUSICBRAINZ_CONTACT_EMAIL"
+  ],
+  "no_key_sources": [
+    "MusicBrainz",
+    "OpenStreetMap/Overpass"
+  ]
+}

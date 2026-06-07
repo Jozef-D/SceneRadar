@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sceneradar-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-sceneradar}
+      POSTGRES_USER: ${POSTGRES_USER:-sceneradar}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sceneradar}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sceneradar} -d ${POSTGRES_DB:-sceneradar}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  postgres_data:
