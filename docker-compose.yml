@@ -17,5 +17,93 @@ services:
       timeout: 5s
       retries: 20
 
+  city-service:
+    build:
+      context: .
+      dockerfile: services/city_service/Dockerfile
+    container_name: sceneradar-city-service
+    env_file: .env
+    ports:
+      - "8001:8001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  events-service:
+    build:
+      context: .
+      dockerfile: services/events_service/Dockerfile
+    container_name: sceneradar-events-service
+    env_file: .env
+    ports:
+      - "8002:8002"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  artist-service:
+    build:
+      context: .
+      dockerfile: services/artist_service/Dockerfile
+    container_name: sceneradar-artist-service
+    env_file: .env
+    ports:
+      - "8003:8003"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  genre-service:
+    build:
+      context: .
+      dockerfile: services/genre_service/Dockerfile
+    container_name: sceneradar-genre-service
+    env_file: .env
+    ports:
+      - "8004:8004"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  venue-service:
+    build:
+      context: .
+      dockerfile: services/venue_service/Dockerfile
+    container_name: sceneradar-venue-service
+    env_file: .env
+    ports:
+      - "8005:8005"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  scoring-service:
+    build:
+      context: .
+      dockerfile: services/scoring_service/Dockerfile
+    container_name: sceneradar-scoring-service
+    env_file: .env
+    ports:
+      - "8006:8006"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: services/api_gateway/Dockerfile
+    container_name: sceneradar-api-gateway
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - city-service
+      - events-service
+      - artist-service
+      - genre-service
+      - venue-service
+      - scoring-service
+
 volumes:
   postgres_data:
