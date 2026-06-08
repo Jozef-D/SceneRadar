@@ -105,5 +105,17 @@ services:
       - venue-service
       - scoring-service
 
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: sceneradar-frontend
+    environment:
+      VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-gateway
+
 volumes:
   postgres_data:
