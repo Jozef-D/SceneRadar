@@ -1,0 +1,43 @@
+### Health
+GET http://localhost:8000/api/health
+
+### Full refresh
+POST http://localhost:8000/api/refresh
+
+### Refresh events only
+POST http://localhost:8000/api/refresh/events
+
+### Refresh venues only
+POST http://localhost:8000/api/refresh/venues
+
+### Refresh tags/genres only
+POST http://localhost:8000/api/refresh/genres
+
+### Refresh scores only
+POST http://localhost:8000/api/refresh/scores
+
+### Ingestion logs
+GET http://localhost:8000/api/ingestion-logs
+
+### Ranking
+GET http://localhost:8000/api/ranking?genre=metal
+
+### Dashboard
+GET http://localhost:8000/api/dashboard/1?genre=metal
+
+### City events
+GET http://localhost:8000/api/cities/1/events?genre=metal
+
+
+### Fast parallel refresh
+POST http://localhost:8000/api/refresh
+
+### Full slower refresh
+POST http://localhost:8000/api/refresh?include_overpass=true&include_musicbrainz=true
+
+
+### More complete Ticketmaster refresh with pagination and geo radius
+POST http://localhost:8000/api/refresh/events?page_size=100&max_pages=10&days_ahead=365&radius_km=50&use_geo=true
+
+### City-name only Ticketmaster refresh for comparison
+POST http://localhost:8000/api/refresh/events?page_size=100&max_pages=10&days_ahead=365&use_geo=false

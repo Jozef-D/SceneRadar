@@ -1,0 +1,7 @@
+services:
+  api-gateway:
+    environment:
+      DEMO_MODE: "false"
+  frontend:
+    environment:
+      NODE_ENV: production

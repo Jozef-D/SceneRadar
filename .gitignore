@@ -11,3 +11,5 @@ dist/
 .vscode/
 coverage/
 htmlcov/
+reports/
+run_tests.sh
